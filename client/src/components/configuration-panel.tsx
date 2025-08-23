@@ -225,7 +225,7 @@ export default function ConfigurationPanel({ documentId, onQuestionsGenerated, d
               data-testid="button-generate"
               onClick={handleGenerate}
               disabled={disabled || generateMutation.isPending}
-              className={`w-full py-4 text-lg font-semibold transition-all ${
+              className={`w-full py-4 text-lg font-semibold transition-all text-black ${
                 generateMutation.isPending 
                   ? 'bg-amber-500 hover:bg-amber-600' 
                   : 'bg-primary-500 hover:bg-primary-600'
