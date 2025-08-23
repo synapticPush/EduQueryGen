@@ -51,7 +51,6 @@ export default function Home() {
               <h1 className="text-xl font-semibold text-gray-900">Question Generator</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">Powered by Gemini AI</span>
               <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
                 <User className="text-gray-600 text-sm h-4 w-4" />
               </div>
@@ -120,7 +119,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 pt-6 border-t border-gray-200 text-center">
-            <p className="text-xs text-gray-500">&copy; 2024 Question Generator. Built for educators, powered by AI.</p>
+            <p className="text-xs text-gray-500">Made with love by Pushpendra Sharma ❤️</p>
           </div>
         </div>
       </footer>
