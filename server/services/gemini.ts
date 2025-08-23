@@ -14,7 +14,7 @@ export class GeminiService {
       const prompt = this.buildPrompt(textContent, config);
       
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-pro",
+        model: "gemini-2.5-flash",
         config: {
           responseMimeType: "application/json",
           responseSchema: {
@@ -62,43 +62,20 @@ export class GeminiService {
   private buildPrompt(textContent: string, config: GenerateQuestionsRequest): string {
     const { questionCount, difficulty, questionType } = config;
     
-    const basePrompt = `
-You are an expert educator creating assessment questions from the provided text content. 
+    const basePrompt = `Create ${questionCount} ${difficulty}-level ${questionType} questions from this text. Only use information from the provided content.
 
-STRICT REQUIREMENTS:
-1. Generate EXACTLY ${questionCount} questions
-2. All questions MUST be based ONLY on the provided text content
-3. Do NOT use any external knowledge or information not present in the text
-4. Difficulty level: ${difficulty}
-5. Question type: ${questionType}
+${questionType === 'mcq' ? 'For MCQ: 4 options each, one correct.' : 'For True/False: correctAnswer must be "True" or "False".'}
 
-TEXT CONTENT TO ANALYZE:
+TEXT CONTENT:
 ${textContent}
 
-DIFFICULTY GUIDELINES:
-- Easy: Basic recall and understanding, straightforward facts
-- Medium: Application and analysis, requiring deeper comprehension
-- Hard: Synthesis and evaluation, complex reasoning
-
-QUESTION TYPE INSTRUCTIONS:
-${questionType === 'mcq' 
-  ? `- Multiple Choice Questions with exactly 4 options (A, B, C, D)
-- Only ONE correct answer per question
-- Make incorrect options plausible but clearly wrong
-- Avoid "all of the above" or "none of the above" options`
-  : `- True/False Questions only
-- correctAnswer should be either "True" or "False"
-- No options array needed for True/False questions`
-}
-
-FORMAT REQUIREMENTS:
-- Each question must have a unique ID (q1, q2, etc.)
-- Questions must be clear and unambiguous
-- Explanations must reference specific parts of the source text
-- Ensure questions cover different sections of the content when possible
-
-Generate the questions now as a JSON object with a "questions" array.
-`;
+Return JSON with "questions" array. Each question needs:
+- id: "q1", "q2", etc.
+- question: clear question text
+- ${questionType === 'mcq' ? 'options: array of 4 choices' : '(no options for true/false)'}  
+- correctAnswer: correct choice
+- explanation: why answer is correct (reference source text)
+- difficulty: "${difficulty}"`;
 
     return basePrompt;
   }
