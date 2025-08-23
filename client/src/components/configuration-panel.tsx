@@ -220,29 +220,50 @@ export default function ConfigurationPanel({ documentId, onQuestionsGenerated, d
           </div>
 
           {/* Generate Button */}
-          <Button
-            data-testid="button-generate"
-            onClick={handleGenerate}
-            disabled={disabled || generateMutation.isPending}
-            className="w-full bg-primary-500 hover:bg-primary-600 py-3"
-          >
-            {generateMutation.isPending ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                <span>Generating...</span>
-              </>
-            ) : (
-              <>
-                <Wand2 className="h-4 w-4 mr-2" />
-                <span>Generate Questions</span>
-              </>
-            )}
-          </Button>
+          <div className={`space-y-3 ${generateMutation.isPending ? 'p-4 bg-amber-50 border border-amber-200 rounded-lg' : ''}`}>
+            <Button
+              data-testid="button-generate"
+              onClick={handleGenerate}
+              disabled={disabled || generateMutation.isPending}
+              className={`w-full py-4 text-lg font-semibold transition-all ${
+                generateMutation.isPending 
+                  ? 'bg-amber-500 hover:bg-amber-600' 
+                  : 'bg-primary-500 hover:bg-primary-600'
+              }`}
+            >
+              {generateMutation.isPending ? (
+                <>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3" />
+                  <span>Generating Questions...</span>
+                </>
+              ) : (
+                <>
+                  <Wand2 className="h-5 w-5 mr-3" />
+                  <span>🚀 Generate Questions</span>
+                </>
+              )}
+            </Button>
 
-          {/* Estimated Time */}
-          <div className="flex items-center justify-center space-x-2 text-xs text-gray-500">
-            <Clock className="h-3 w-3" />
-            <span>Estimated processing time: 30-60 seconds</span>
+            {/* Generation Status */}
+            {generateMutation.isPending && (
+              <div className="text-center space-y-2">
+                <p className="text-sm font-medium text-amber-800">
+                  ⚡ AI is analyzing your document and creating questions...
+                </p>
+                <div className="flex items-center justify-center space-x-2 text-xs text-amber-600">
+                  <Clock className="h-3 w-3" />
+                  <span>This may take 10-30 seconds</span>
+                </div>
+              </div>
+            )}
+
+            {/* Estimated Time for non-generating state */}
+            {!generateMutation.isPending && (
+              <div className="flex items-center justify-center space-x-2 text-xs text-gray-500">
+                <Clock className="h-3 w-3" />
+                <span>Estimated processing time: 10-30 seconds</span>
+              </div>
+            )}
           </div>
         </div>
       </Card>

@@ -154,26 +154,41 @@ export default function UploadSection({ onUploadSuccess, uploadedDocument, keywo
             <Progress value={uploadProgress} className="w-full" />
           </div>
         ) : uploadedDocument ? (
-          <div data-testid="upload-success" className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <div className="flex items-center space-x-2">
-              <CheckCircle className="text-green-500 h-5 w-5" />
-              <div className="flex-1">
-                <p className="text-sm font-medium text-green-900" data-testid="text-filename">
-                  {uploadedDocument.filename}
-                </p>
-                <p className="text-xs text-green-600" data-testid="text-file-stats">
-                  {uploadedDocument.pageCount} pages • {formatFileSize(uploadedDocument.fileSize)} • {uploadedDocument.wordCount.toLocaleString()} words extracted
-                </p>
+          <div data-testid="upload-success" className="mt-4 space-y-3">
+            <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="text-green-500 h-5 w-5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-green-900" data-testid="text-filename">
+                    {uploadedDocument.filename}
+                  </p>
+                  <p className="text-xs text-green-600" data-testid="text-file-stats">
+                    {uploadedDocument.pageCount} pages • {formatFileSize(uploadedDocument.fileSize)} • {uploadedDocument.wordCount.toLocaleString()} words extracted
+                  </p>
+                </div>
+                <Button
+                  data-testid="button-clear-upload"
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearUpload}
+                  className="text-green-600 hover:text-green-700"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
               </div>
-              <Button
-                data-testid="button-clear-upload"
-                variant="ghost"
-                size="sm"
-                onClick={clearUpload}
-                className="text-green-600 hover:text-green-700"
-              >
-                <X className="h-4 w-4" />
-              </Button>
+            </div>
+            
+            {/* Next Step Indicator */}
+            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                  2
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-blue-900">Next Step: Configure & Generate Questions</p>
+                  <p className="text-xs text-blue-600">Choose your preferences in Step 2, then click "Generate Questions"</p>
+                </div>
+              </div>
             </div>
           </div>
         ) : null}
