@@ -13,6 +13,8 @@ export class GeminiService {
     try {
       const prompt = this.buildPrompt(textContent, config);
       
+      console.log("Sending request to Gemini API...");
+      
       const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",
         config: {
@@ -46,12 +48,23 @@ export class GeminiService {
         contents: prompt,
       });
 
+      console.log("Received response from Gemini API");
+      
       const rawJson = response.text;
-      if (!rawJson) {
-        throw new Error("Empty response from Gemini API");
+      console.log("Raw response:", rawJson ? "received" : "empty");
+      
+      if (!rawJson || rawJson.trim().length === 0) {
+        console.error("Empty response from Gemini API");
+        throw new Error("The AI service returned an empty response. Please try again with a shorter document or simpler content.");
       }
 
       const data = JSON.parse(rawJson);
+      
+      if (!data.questions || !Array.isArray(data.questions) || data.questions.length === 0) {
+        throw new Error("No valid questions were generated. Please try again with different content.");
+      }
+      
+      console.log(`Successfully generated ${data.questions.length} questions`);
       return data.questions as Question[];
     } catch (error) {
       console.error("Gemini API error:", error);
@@ -62,12 +75,15 @@ export class GeminiService {
   private buildPrompt(textContent: string, config: GenerateQuestionsRequest): string {
     const { questionCount, difficulty, questionType } = config;
     
+    // Limit text content to prevent API overload (keep first 8000 characters)
+    const limitedContent = textContent.length > 8000 ? textContent.substring(0, 8000) + "..." : textContent;
+    
     const basePrompt = `Create ${questionCount} ${difficulty}-level ${questionType} questions from this text. Only use information from the provided content.
 
 ${questionType === 'mcq' ? 'For MCQ: 4 options each, one correct.' : 'For True/False: correctAnswer must be "True" or "False".'}
 
 TEXT CONTENT:
-${textContent}
+${limitedContent}
 
 Return JSON with "questions" array. Each question needs:
 - id: "q1", "q2", etc.
