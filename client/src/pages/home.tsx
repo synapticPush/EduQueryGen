@@ -48,7 +48,7 @@ export default function Home() {
               <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
                 <FileText className="text-white text-lg h-5 w-5" />
               </div>
-              <h1 className="text-xl font-semibold text-gray-900">Question Generator</h1>
+              <h1 className="text-xl font-semibold text-gray-900">AI Powered EduQueryGen</h1>
             </div>
             <div className="flex items-center space-x-4">
               <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
