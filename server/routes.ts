@@ -34,7 +34,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       if (!result.isValid) {
         return res.status(400).json({ 
-          message: "PDF validation failed", 
+          message: "PDF Validation Failed",
           errors: result.errors 
         });
       }
@@ -101,9 +101,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       });
     } catch (error) {
-      console.error("Question generation error:", error);
+      console.error("Question Generation Error:", error);
       res.status(500).json({ 
-        message: error instanceof Error ? error.message : "Failed to generate questions" 
+        message: error instanceof Error ? error.message : "Failed to Generate Questions" 
       });
     }
   });
@@ -114,7 +114,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { questionSetId, format } = req.params;
       
       if (!['pdf', 'docx'].includes(format)) {
-        return res.status(400).json({ message: "Invalid format. Use 'pdf' or 'docx'" });
+        return res.status(400).json({ message: "Invalid Format. Use 'pdf' or 'docx'" });
       }
 
       const questionSet = await storage.getQuestionSet(questionSetId);
@@ -129,7 +129,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const questionPaper: QuestionPaper = {
         title: `Question Paper - ${document.filename}`,
-        instructions: `Instructions: Answer all questions. Each question carries equal marks. Total questions: ${questionSet.questionCount}`,
+        instructions: `Instructions: Answer All Questions. Each Question Carries Equal Marks. Total Questions: ${questionSet.questionCount}`,
         questions: questionSet.questions as any[],
         metadata: {
           questionCount: questionSet.questionCount,
@@ -159,7 +159,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Download error:", error);
       res.status(500).json({ 
-        message: error instanceof Error ? error.message : "Failed to generate document" 
+        message: error instanceof Error ? error.message : "Failed to Generate Document" 
       });
     }
   });
@@ -185,7 +185,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const questionPaper: QuestionPaper = {
         title: `Answer Key - ${document.filename}`,
-        instructions: `This is the answer key for the question paper. Contains correct answers and explanations.`,
+        instructions: `This is the Answer key for the Question Paper. Contains correct Answers and Explanations.`,
         questions: questionSet.questions as any[],
         metadata: {
           questionCount: questionSet.questionCount,

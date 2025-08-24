@@ -39,7 +39,7 @@ export class PDFProcessor {
         pageCount: 0,
         fileSize: buffer.length,
         isValid: false,
-        errors: ['Failed to extract text from PDF. Please ensure the PDF contains selectable text, not scanned images.']
+        errors: ['Failed to Extract text from PDF. Please Ensure the PDF contains selectable text, not Scanned Images.']
       };
     }
   }

@@ -34,14 +34,14 @@ export default function ConfigurationPanel({ documentId, onQuestionsGenerated, d
     onSuccess: (data) => {
       onQuestionsGenerated(data);
       toast({
-        title: "Questions generated successfully",
+        title: "Questions Generated Successfully",
         description: `Created ${data.questions.length} ${difficulty} level ${questionType.toUpperCase()} questions`,
       });
     },
     onError: (error: any) => {
       toast({
         title: "Generation failed",
-        description: error.message || "Failed to generate questions",
+        description: error.message || "Failed to Generate Questions",
         variant: "destructive",
       });
     },
@@ -252,7 +252,7 @@ export default function ConfigurationPanel({ documentId, onQuestionsGenerated, d
                 </p>
                 <div className="flex items-center justify-center space-x-2 text-xs text-amber-600">
                   <Clock className="h-3 w-3" />
-                  <span>This may take 10-30 seconds</span>
+                  <span>This may take 10-20 seconds</span>
                 </div>
               </div>
             )}
@@ -261,7 +261,7 @@ export default function ConfigurationPanel({ documentId, onQuestionsGenerated, d
             {!generateMutation.isPending && (
               <div className="flex items-center justify-center space-x-2 text-xs text-gray-500">
                 <Clock className="h-3 w-3" />
-                <span>Estimated processing time: 10-30 seconds</span>
+                <span>Estimated processing time: 10-20 seconds</span>
               </div>
             )}
           </div>

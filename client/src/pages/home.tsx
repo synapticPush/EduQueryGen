@@ -92,11 +92,11 @@ export default function Home() {
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Features</h3>
               <ul className="space-y-2 text-xs text-gray-600">
-                <li>• AI-powered question generation</li>
-                <li>• Context-based content analysis</li>
-                <li>• Multiple difficulty levels</li>
+                <li>• AI-powered Question Generation</li>
+                <li>• Context-based Content Analysis</li>
+                <li>• Multiple Difficulty Levels</li>
                 <li>• MCQ and True/False formats</li>
-                <li>• Separate answer keys</li>
+                <li>• Separate Answer keys</li>
               </ul>
             </div>
             <div>
@@ -113,13 +113,17 @@ export default function Home() {
               <ul className="space-y-2 text-xs text-gray-600">
                 <li>• Powered by Google Gemini</li>
                 <li>• Advanced NLP processing</li>
-                <li>• Context-aware generation</li>
-                <li>• Quality assurance checks</li>
+                <li>• Context-Aware Generation</li>
+                <li>• Quality Assurance Checks</li>
               </ul>
             </div>
           </div>
           <div className="mt-8 pt-6 border-t border-gray-200 text-center">
-            <p className="text-xs text-gray-500">Made with love by Pushpendra Sharma ❤️</p>
+          <p className="text-xs text-gray-500">
+  Made with ❤️ by Pushpendra Sharma <br />
+  © 2025 All Rights Reserved.
+</p>
+
           </div>
         </div>
       </footer>
