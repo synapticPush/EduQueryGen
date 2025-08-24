@@ -17,20 +17,19 @@ It allows teachers to **upload PDF chapters** and automatically generates **MCQs
 ## 📂 Project Structure
 
 EduQueryGen/
-│── client/ # React frontend
-│ ├── src/
-│ └── package.json
+│── client/              # React frontend (with Tailwind)
+│   ├── src/
+│   └── package.json
 │
-│── server/ # Node.js (Express + TypeScript) backend
-│ ├── index.ts
-│ ├── routes.ts
-│ ├── services/
-│ │ └── gemini.ts
-│ └── package.json
+│── server/              # Express backend
+│   ├── routes.ts
+│   ├── services/
+│   │   └── gemini.ts
+│   └── index.ts
 │
-│── .env # Environment variables (API keys etc.)
-│── package.json # Root package.json
+│── package.json         # (root) main package.json, not inside server
 │── README.md
+│── .env                 # environment variables (API keys)
 
 
 
@@ -38,8 +37,7 @@ EduQueryGen/
 
 ## ⚙️ Installation & Setup
 
-### 1. Clone Repository
-```bash
+
 git clone https://github.com/your-username/EduQueryGen.git
 cd EduQueryGen
 
