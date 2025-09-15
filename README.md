@@ -16,7 +16,7 @@ It allows teachers to **upload PDF chapters** and automatically generates **MCQs
 ## ⚙️ Installation & Setup
 
 
-git clone https://github.com/your-username/EduQueryGen.git
+git clone https://github.com/synapticPush/EduQueryGen.git
 cd EduQueryGen
 
 ### Install root dependencies (if any)
